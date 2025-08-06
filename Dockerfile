@@ -2,10 +2,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-COPY *.csproj ./
+COPY ContactApi/*.csproj ./
 RUN dotnet restore
 
-COPY . ./
+COPY ContactApi/. ./
 RUN dotnet publish -c Release -o out
 
 # Runtime stage
