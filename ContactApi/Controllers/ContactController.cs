@@ -26,5 +26,11 @@ public class ContactController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<ContactMessage>> Get() => await _service.GetAsync();
+    public async Task<List<ContactMessage>> Get()
+    {
+        Console.WriteLine("GET /api/contact called");
+        var data = await _service.GetAsync();
+        Console.WriteLine($"Fetched {data.Count} contact messages");
+        return data;
+    }
 }

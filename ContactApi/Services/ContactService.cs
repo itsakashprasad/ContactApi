@@ -15,9 +15,13 @@ public class ContactService
         _collection = database.GetCollection<ContactMessage>(config["MongoDB:CollectionName"]);
     }
 
-    public async Task<List<ContactMessage>> GetAsync() =>
-        await _collection.Find(_ => true).ToListAsync();
-
+    public async Task<List<ContactMessage>> GetAsync()
+    {
+        Console.WriteLine("Fetching all contacts from MongoDB...");
+        var list = await _collection.Find(_ => true).ToListAsync();
+        Console.WriteLine($"MongoDB returned {list.Count} documents");
+        return list;
+    }
     public async Task CreateAsync(ContactMessage msg) =>
         await _collection.InsertOneAsync(msg);
 }
