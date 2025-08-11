@@ -22,6 +22,10 @@ public class ContactService
         Console.WriteLine($"MongoDB returned {list.Count} documents");
         return list;
     }
-    public async Task CreateAsync(ContactMessage msg) =>
+    public async Task CreateAsync(ContactMessage msg)
+    {
+        Console.WriteLine("Inserting a new contact message into MongoDB...");
         await _collection.InsertOneAsync(msg);
+        Console.WriteLine("Insert completed");
+    }
 }
